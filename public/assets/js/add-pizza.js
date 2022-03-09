@@ -66,7 +66,12 @@ const handlePizzaSubmit = event => {
     alert('Pizza created successfully!');
     console.log(postResponse);
   })
-  .catch(err => console.log(err));
+  .catch(err => {
+    console.log('THIS HAPPENED')
+    console.log(err);
+    // save to indexeddb object store in the event of an error
+    saveRecord(formData)
+  });
 };
 
 $pizzaForm.addEventListener('submit', handlePizzaSubmit);

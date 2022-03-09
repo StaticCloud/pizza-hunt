@@ -43,7 +43,7 @@ const PizzaSchema = new Schema({
 
 // virtual example - virtuals add virtual properties to a document that aren't stored in the database
 PizzaSchema.virtual('commentCount').get(function() {
-    return this.comments.length;
+    return this.comments.reduce((total, comment) => total + comment.replies.length + 1, 0)
 })
 
 // create the pizza model

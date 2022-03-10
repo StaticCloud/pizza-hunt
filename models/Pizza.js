@@ -6,10 +6,15 @@ const dateFormat = require('../utils/dateFormat');
 // create the schema for the pizza model
 const PizzaSchema = new Schema({
     pizzaName: {
-        type: String
+        type: String,
+        required: true,
+        // trim removes whitespace before and after text
+        trim: true
     },
     createdBy: {
-        type: String
+        type: String,
+        required: true,
+        trim: true
     },
     createdAt: {
         type: Date,
@@ -19,6 +24,9 @@ const PizzaSchema = new Schema({
     },
     size: {
         type: String,
+        required: true,
+        // array of acceptable values
+        enum: ['Personal', 'Small', 'Medium', 'Large', 'Extra Large'],
         default: 'Large'
     },
     toppings: [],

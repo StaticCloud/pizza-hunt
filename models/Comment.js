@@ -10,11 +10,14 @@ const ReplySchema = new Schema({
     },
 
     replyBody: {
-        type: String
+        type: String,
+        required: true,
+        trim: true
     },
 
     writtenBy: {
-        type: String
+        type: String,
+        required: true
     },
 
     createdAt: {
@@ -25,10 +28,8 @@ const ReplySchema = new Schema({
 },
 {
     toJSON: {
-        virtuals: true,
         getters: true
-    },
-    id: false
+    }
 })
 
 // schema for comment model
@@ -38,7 +39,9 @@ const CommentSchema = new Schema({
     },
 
     commentBody: {
-        type: String
+        type: String,
+        required: true,
+        trim: true
     },
 
     createdAt: {
@@ -52,8 +55,10 @@ const CommentSchema = new Schema({
 },
 {
     toJSON: {
+        virtuals: true,
         getters: true
-    }
+    },
+    id: false
 });
 
 CommentSchema.virtual('replyCount').get(function() {
